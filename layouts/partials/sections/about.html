@@ -18,12 +18,12 @@
                 <div class="col-lg-7 ">
                     <div class="about-content text-dark p-3">
                         {{ if .Site.Params.descripe_l1_person }}
-                        {{ .Site.Params.descripe_l1_person }}
+                        {{ .Site.Params.descripe_l1_person | markdownify }}
                         {{ end }}
 
                         {{ if .Site.Params.descripe_l2_person }}
                         <br><br>
-                        {{ .Site.Params.descripe_l2_person }}
+                        {{ .Site.Params.descripe_l2_person | markdownify }}
                         {{ end }}
                     </div>
                     <div class="social px-3">
@@ -32,6 +32,14 @@
                             aria-pressed="true">
                             Resume
                         </a>
+                        {{ end }}
+
+                        {{ if .Site.Params.social }}
+                            {{ range .Site.Params.social -}}
+                                <a class="text-dark" href="{{ .link }}" aria-label="social">
+                                    <img src="{{ .icon | absURL }}" class="social-icon" alt="icon">
+                                </a>
+                            {{- end }}
                         {{ end }}
 
                         {{ if .Site.Params.github }}
